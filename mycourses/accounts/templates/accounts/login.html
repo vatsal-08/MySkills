@@ -1,0 +1,14 @@
+{% extends "courses/index.html" %}
+{% load static %} 
+{% block title %}Login | MySkills.org{% endblock title %}
+{% block content %}
+    <h2><a class="auth" href="{% url 'login' %}">Login</a></h2>
+    <form action="" method="post">
+        {% csrf_token %}  
+        <p>{{form.username.label_tag}}{{form.username}}</p>
+        <p>{{form.password.label_tag}}{{form.password}}</p>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+        <button class="btn btn-primary" type="submit">Login</button>
+        <p><a class="auth" href="{% url 'signup'%}">Don't have an account?</a></p>
+    </form>
+{% endblock content %}
