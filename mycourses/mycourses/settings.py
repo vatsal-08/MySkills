@@ -17,7 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'courses.apps.CoursesConfig',
     'payments.apps.PaymentsConfig',
-    'accounts.apps.AccountsConfig',
+    # 'accounts.apps.AccountsConfig',
     'fontawesomefree',
 ]
 

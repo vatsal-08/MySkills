@@ -1,3 +1,3 @@
-document.getElementById('top').addEventListener('click',function(){
-    window.scrollTo(0,0);
-})
+document.getElementById("top").addEventListener("click", function () {
+  window.scrollTo(0, 0);
+});

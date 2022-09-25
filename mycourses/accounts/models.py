@@ -1,25 +1,21 @@
 from django.db import models
-from django.conf import settings
-from django.contrib.auth import get_user_model
-from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth.models import AbstractUser
+from courses.models import Course
 
+class User(AbstractUser):
+    email = models.EmailField(verbose_name="email",max_length=60, unique=True)
+    name = models.CharField(max_length=30) 
+    username = models.CharField(max_length=40,unique=True)
+    date_joined = models.DateTimeField(verbose_name="Date joined")
+    last_login = models.DateTimeField(verbose_name="Date joined")
+    is_admin = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    courses_taken = models.ManyToManyField(Course)
 
-class CustomUser(AbstractUser):
-    email = models.EmailField(max_length=255, unique=True)
-    username = models.TextField(null=False, blank=True)
-    is_verified = models.BooleanField(default=False)
-    date_joined = models.DateTimeField(auto_now=True, blank=True)
-    last_login = models.DateTimeField(auto_now=True, blank=True)
-    last_logout = models.DateTimeField(null=True,blank=True)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS=['username',]
 
-    USERNAME_FIELD=['email']
-
-
-    # def authenticate(self,username=None,password=None):
-    #     if '@' in username:
-    #         kwargs={'email':username}
-    #     else:
-    #         kwargs={'username':username}
-    #     try:
-    #         user = 
+    def __str__(self) -> str:
+        return self.email
