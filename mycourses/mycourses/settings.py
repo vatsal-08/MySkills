@@ -17,7 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'courses.apps.CoursesConfig',
     'payments.apps.PaymentsConfig',
-    # 'accounts.apps.AccountsConfig',
+    'accounts.apps.AccountsConfig',
     'fontawesomefree',
 ]
 
@@ -86,3 +86,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'accounts/login/'
+AUTH_USER_MODEL = 'accounts.User'
