@@ -9,7 +9,7 @@ from django.contrib.auth import login, logout
 
 # Create your views here.
 class SignUpView(FormView):
-    template_name: str = 'accounts/signup.html'
+    template_name= 'accounts/signup.html'
     form_class = SignupForm
     redirect_autheticated_user = True
     success_url = reverse_lazy('courses')

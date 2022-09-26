@@ -14,7 +14,7 @@
                             <h5 class="card-title">{{obj.name}}</h5>
                             <p class="card-text">
                                 {{obj.description|slice:"0:50"}}
-                                {% if obj.description|length >= 50 %}
+                                {% if obj.description|length >= 47 %}
                                 ...
                                 {% else %}
                                 <br>
