@@ -164,16 +164,21 @@
 }
 
 .about-right h1 {
-  font-size: 5rem;
+  font-size: 4rem;
   text-transform: uppercase;
 }
-
+.about-right h1:hover {
+  text-transform: capitalize;
+  color: #b721ff;
+}
 .about-right h1 span {
   color: #b721ff;
 }
-
+.about-right h1:hover > span{
+  color:white;
+}
 .about-right h2 {
-  font-weight: 600;
+  font-weight: 650;
 }
 
 .about-btns {
@@ -225,8 +230,11 @@
   font-weight: 300;
   padding: 0.5rem;
   opacity: 0.8;
+  font-size: 1.25em;
 }
-
+.about-para p:hover{
+  font-size: 1.3em; 
+}
 @media screen and (min-width: 992px) {
   .about-wrapper {
     display: grid;
