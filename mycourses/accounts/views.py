@@ -1,12 +1,11 @@
 from django.shortcuts import render
 from .forms import *
-from django.views.generic import FormView
-from django.contrib import auth
+from django.views.generic import FormView 
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.contrib.auth import login, logout
-
-
+from django.contrib.auth import login
+from django.contrib.auth.views import LoginView 
+from django.contrib.auth import logout as django_logout
 # Create your views here.
 class SignUpView(FormView):
     template_name= 'accounts/signup.html'
@@ -26,7 +25,21 @@ class SignUpView(FormView):
         return super(SignUpView, self).get(*args, **kwargs)
 
 
-# class LoginView()
+class LoggingView(LoginView):
+    template_name='accounts/login.html'
+    form_class=LoginForm
+    redirect_autheticated_user = True
+    success_url = reverse_lazy('courses')
+
+    # def get(self,request):
+    #     form = self.form_class
+
+    def form_valid(self, form):
+        user = form.save()
+        if user is not None:
+            login(self.request, user)
+        return super(LoggingView, self).form_valid(form)
+        
 def logout(request):
-    auth.logout(request)
+    django_logout(request)
     return redirect('login')
