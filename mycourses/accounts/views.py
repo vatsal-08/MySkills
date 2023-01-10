@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView 
 from django.contrib.auth import logout as django_logout
-# Create your views here.
+
 class SignUpView(FormView):
     template_name= 'accounts/signup.html'
     form_class = SignupForm
@@ -31,8 +31,11 @@ class LoggingView(LoginView):
     redirect_autheticated_user = True
     success_url = reverse_lazy('courses')
 
-    # def get(self,request):
-    #     form = self.form_class
+    def get(self,request):
+        form = self.form_class
+        message=''
+        return render(request,self.template_name,context={'form':form,'message':message})
+    
 
     def form_valid(self, form):
         user = form.save()
