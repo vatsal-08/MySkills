@@ -13,16 +13,6 @@ class SignUpView(FormView):
     redirect_autheticated_user = True
     success_url = reverse_lazy('courses')
 
-    def form_valid(self, form):
-        user = form.save()
-        if user is not None:
-            login(self.request, user)
-        return super(SignUpView, self).form_valid(form)
-
-    def get(self, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            return redirect('courses')
-        return super(SignUpView, self).get(*args, **kwargs)
 
 
 class LoggingView(LoginView):

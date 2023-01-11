@@ -3,17 +3,17 @@ from accounts.models import User
 
 
 class SignupForm(forms.Form):
-    username = forms.CharField(label='Your Username',max_length=75)
-    email = forms.EmailField(label='Email')
-    password = forms.CharField(widget=forms.PasswordInput) 
-
-    def clean(self):
-        cleaned_data = super().clean()
-        name_of_user = cleaned_data("username")
-        valpwd = cleaned_data.get("password") 
-        user = User.objects.get(username=name_of_user)
-        print(valpwd,user)
+    # username = forms.CharField(label='Your Username',max_length=75)
+    # email = forms.EmailField(label='Email')
+    # password = forms.CharField(widget=forms.PasswordInput) 
+    
         # AJAX left to add for user(available or not)  
+    class Meta:
+        model = User
+        fields=('username','email','password')
+    
+    def save(self,commit=True):
+        pass
 
 
 class LoginForm(forms.Form):
