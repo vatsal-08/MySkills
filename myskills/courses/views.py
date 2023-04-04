@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.list import ListView
+from django.views.generic.list import ListView, DetailView
 
 from .models import *
 
@@ -10,4 +10,7 @@ class CourseList(ListView):
     model = Course
 
 def about(request):
-    pass
+    return render(request,'courses/about.html')
+
+class CourseDetail(DetailView):
+    model = Course
