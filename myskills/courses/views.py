@@ -6,11 +6,12 @@ from .models import *
 def index(request):
     return render(request,'courses/home.html')
 
+def about(request):
+    return render(request,'courses/about.html')
+
 class CourseList(ListView):
     model = Course
 
-def about(request):
-    return render(request,'courses/about.html')
 
 class CourseDetail(DetailView):
     model = Course
