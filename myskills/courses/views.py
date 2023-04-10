@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.list import ListView, DetailView
+from django.views.generic import  ListView,DetailView
 
 from .models import *
 
@@ -8,11 +8,12 @@ def index(request):
     return render(request,'courses/home.html')
 
 def about(request):
-    return render(request,'courses/about.html')
+    return render(request,'courses/about_me.html')
 
 class CourseList(ListView):
     model = Course
-
+    template_name="courses/home.html"
 
 class CourseDetail(DetailView):
     model = Course
+    template_name="courses/"
