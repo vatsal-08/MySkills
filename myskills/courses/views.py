@@ -8,7 +8,7 @@ def index(request):
     return render(request,'courses/home.html')
 
 def about(request):
-    return render(request,'courses/about_me.html')
+    return render(request,'courses/about-me.html')
 
 class CourseList(ListView):
     model = Course
