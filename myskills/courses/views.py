@@ -13,7 +13,9 @@ def about(request):
 class CourseList(ListView):
     model = Course
     template_name="courses/home.html"
+    context_object_name='courses'
 
 class CourseDetail(DetailView):
     model = Course
-    template_name="courses/"
+    template_name="courses/detail.html"
+    context_object_name='course'
