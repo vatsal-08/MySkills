@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import  ListView,DetailView
+from django.views.generic import  ListView,DetailView, UpdateView
 
 from .models import *
 
@@ -19,3 +19,7 @@ class CourseDetail(DetailView):
     model = Course
     template_name="courses/detail.html"
     context_object_name='course'
+
+class CourseUpdateView(UpdateView):
+    model = Course
+    template_name = "course/update.html"
