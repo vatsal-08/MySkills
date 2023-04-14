@@ -16,6 +16,7 @@ INSTALLED_APPS = [
     'courses.apps.CoursesConfig',
     'payments.apps.PaymentsConfig',
     'accounts.apps.AccountsConfig',
+    'fontawesomefree'
 ]
 
 MIDDLEWARE = [
