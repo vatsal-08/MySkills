@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&family=Oswald&family=Poppins&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -103,6 +102,9 @@ body {
 .about-right h1 {
   font-size: 5rem;
   text-transform: uppercase;
+}
+.about-right h1:hover{
+  font-family: 'Edu VIC WA NT Beginner', cursive;;
 }
 .about-right h1 span {
   color: #b721ff;
