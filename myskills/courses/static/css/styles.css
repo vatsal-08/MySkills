@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&family=Oswald&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Edu+VIC+WA+NT+Beginner&family=Montserrat&family=Oswald&family=Pacifico&family=Playfair+Display&family=Poppins&family=Sofia+Sans+Condensed&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -24,7 +24,6 @@ body {
   background: #12192c;
   padding: 4rem 4rem 2.5rem 5rem;
   text-align: center;
-
   border-radius: 12px 12px 0 0;
 }
 .about-left-content {
@@ -60,11 +59,18 @@ body {
   padding-bottom: 1rem;
   border-bottom: 2px solid #b721ff;
 }
+.about-left-content h2:hover{
+  font-family: 'Dancing Script', sans-serif;
+  font-size: 3rem;
+}
 .about-left-content h3 {
   text-transform: uppercase;
   font-weight: 300;
   letter-spacing: 5px;
   margin-top: 1.2rem;
+}
+.about-left-content h3:hover{
+  font-family: 'Pacifico', sans-serif;
 }
 .icons {
   background: #12192c;
@@ -104,13 +110,16 @@ body {
   text-transform: uppercase;
 }
 .about-right h1:hover{
-  font-family: 'Edu VIC WA NT Beginner', cursive;;
+  font-family: 'Oswald', cursive;
 }
 .about-right h1 span {
   color: #b721ff;
 }
 .about-right h2 {
   font-weight: 600;
+}
+.about-right h2:hover{
+  font-family: 'Montserrat', sans-serif;
 }
 .about-btns {
   display: flex;
@@ -157,11 +166,19 @@ body {
     color: #ffffff;
 }
 .about-para p {
-  font-weight: 300;
+  font-weight: 500;
   padding: 0.5rem;
   opacity: 0.8;
+  font-size: 1.1em;
 }
-
+.about-para p:hover{
+  font-size: 1.30rem;
+  font-family: 'Playfair Display', sans-serif;
+}
+.about-para p:first-child:hover{
+  font-family: 'Sofia Sans Condensed', sans-serif;
+  font-size: 1.75rem;
+}
 @media screen and (min-width: 992px) {
   .about-wrapper {
     display: grid;
