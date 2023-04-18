@@ -1,6 +1,6 @@
 from django.db import models
+from accounts.models import *
 
-# Create your models here.
 class Course(models.Model):
     name = models.CharField(max_length=200)
     cost = models.IntegerField()
@@ -14,3 +14,6 @@ class Course(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Cart(models.Model):
+    pass
