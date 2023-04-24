@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Edu+VIC+WA+NT+Beginner&family=Montserrat&family=Oswald&family=Pacifico&family=Playfair+Display&family=Poppins&family=Sofia+Sans+Condensed&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Edu+VIC+WA+NT+Beginner&family=Montserrat&family=Oswald&family=Pacifico&family=Playfair+Display&family=Poppins&family=Sofia+Sans+Condensed&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -59,8 +59,8 @@ body {
   padding-bottom: 1rem;
   border-bottom: 2px solid #b721ff;
 }
-.about-left-content h2:hover{
-  font-family: 'Dancing Script', sans-serif;
+.about-left-content h2:hover {
+  font-family: "Dancing Script", sans-serif;
   font-size: 3rem;
 }
 .about-left-content h3 {
@@ -69,8 +69,8 @@ body {
   letter-spacing: 5px;
   margin-top: 1.2rem;
 }
-.about-left-content h3:hover{
-  font-family: 'Pacifico', sans-serif;
+.about-left-content h3:hover {
+  font-family: "Pacifico", sans-serif;
 }
 .icons {
   background: #12192c;
@@ -109,8 +109,8 @@ body {
   font-size: 5rem;
   text-transform: uppercase;
 }
-.about-right h1:hover{
-  font-family: 'Oswald', cursive;
+.about-right h1:hover {
+  font-family: "Oswald", cursive;
 }
 .about-right h1 span {
   color: #b721ff;
@@ -118,8 +118,8 @@ body {
 .about-right h2 {
   font-weight: 600;
 }
-.about-right h2:hover{
-  font-family: 'Montserrat', sans-serif;
+.about-right h2:hover {
+  font-family: "Montserrat", sans-serif;
 }
 .about-btns {
   display: flex;
@@ -158,12 +158,12 @@ body {
   border-color: #b721ff;
   color: #fff;
 }
-.fa-github{
-    font-size: 20px;
+.fa-github {
+  font-size: 20px;
 }
-.btn-white a{
-    text-decoration: none;
-    color: #ffffff;
+.btn-white a {
+  text-decoration: none;
+  color: #ffffff;
 }
 .about-para p {
   font-weight: 500;
@@ -171,12 +171,12 @@ body {
   opacity: 0.8;
   font-size: 1.1em;
 }
-.about-para p:hover{
-  font-size: 1.30rem;
-  font-family: 'Playfair Display', sans-serif;
+.about-para p:hover {
+  font-size: 1.3rem;
+  font-family: "Playfair Display", sans-serif;
 }
-.about-para p:first-child:hover{
-  font-family: 'Sofia Sans Condensed', sans-serif;
+.about-para p:first-child:hover {
+  font-family: "Sofia Sans Condensed", sans-serif;
   font-size: 1.75rem;
 }
 @media screen and (min-width: 992px) {
@@ -219,4 +219,9 @@ body {
 .icons li:nth-child(4):hover {
   color: #1877f2;
   background-color: #fff;
+}
+.nav-link i.fa-cart-plus {
+  color: white;
+  text-decoration: none;
+  font-size: 1.25rem;
 }

@@ -3,42 +3,63 @@
 {% block title %}Vatsal Khatri |{% endblock title %}
 {% block content %}
 <div class = "about-wrapper">
-      <div class = "about-left">
-        <div class = "about-left-content">
-          <div>
-            <div class = "shadow">
-              <div class = "about-img">
-                <img src = "https://cdn.pixabay.com/photo/2018/11/13/21/43/instagram-3814049__340.png" alt = "about image">
-              </div>
-            </div>
-
-            <h2 class="">Vatsal Khatri</h2>
-            <h3 class="">Software developer</h3>
+  <div class = "about-left">
+    <div class = "about-left-content">
+      <div>
+        <div class = "shadow">
+          <div class = "about-img">
+            <img src = "https://cdn.pixabay.com/photo/2018/11/13/21/43/instagram-3814049__340.png" alt = "about image">
           </div>
-
-          <ul class = "icons">
-            <li><i class = "fab fa-facebook-f"></i></li>
-            <li><i class = "fab fa-twitter"></i></li>
-            <li><i class = "fab fa-linkedin"></i></li>
-            <li><i class = "fab fa-instagram"></i></li>
-          </ul>
-        </div>
-        
       </div>
-
-      <div class = "about-right">
-        <h1>Hello<span>!</span></h1>
-        <h2>Here's who I am & what I do</h2>
-        <div class = "about-btns">
-          <button type="button" class="btn btn-pink">resume / CV</button>
-          <button type="button" class="btn btn-white"><a href="https://github.com/vatsal-08" target="_blank"><i class="fa-brands fa-github"></i> Github</a></button>
-        </div>
-
-        <div class = "about-para">
-          <p>I am from Gandhinagar, Gujarat, India</p>
-          <p>Former SDE Intern @AbleJobs | 4th Year Undergrad at IIITV <br> Full Stack Developer | Competitive Programming | DSA enthusiast <br> Django | React | Android | Kotlin</p>
-        </div>
-        <div class="credit">Made with <span style="color:tomato">❤</span> by <a href="https://www.linkedin.com/in/vatsal-khatri-2395791b1/"  target="_blank">Vatsal Khatri</a></div>
-      </div>
+      <h2 class="">Vatsal Khatri</h2>
+      <h3 class="">Software developer</h3>
     </div>
+
+    <ul class = "icons">
+      <li><i class = "fab fa-facebook-f"></i></li>
+      <li><i class = "fab fa-twitter"></i></li>
+      <li><i class = "fab fa-linkedin"></i></li>
+      <li><i class = "fab fa-instagram"></i></li>
+    </ul>
+  </div>
+</div>
+<div class = "about-right">
+  <h1>Hello<span>!</span></h1>
+  <h2>Here's who I am & what I do</h2>
+  <div class = "about-btns">
+    <button type="button" class="btn btn-pink">resume / CV</button>
+    <button type="button" class="btn btn-white"><a href="https://github.com/vatsal-08" target="_blank"><i class="fa-brands fa-github"></i> Github</a></button>
+  </div>
+  <div class = "about-para">
+    <p>I am from Gandhinagar, Gujarat, India</p>
+    <p>Former SDE Intern @AbleJobs | 4th Year Undergrad at IIITV <br> Full Stack Developer | Competitive Programming | DSA enthusiast <br> Django | React | Android | Kotlin</p>
+  </div>
+    <div class="credit">Made with <span style="color:tomato">❤</span> by <a href="https://www.linkedin.com/in/vatsal-khatri-2395791b1/"  target="_blank">Vatsal Khatri</a></div>
+  </div>
+</div>
+<script>
+  var navLink = document.getElementsByClassName('nav-link')
+  if(navLink.length>0)
+  {
+    var firstElem = navLink[0];
+    if(firstElem)
+    {
+      var classList = firstElem.classList;
+      if(classList.length>0)
+      {
+        classList.toggle('active')
+      }
+    }
+    var secondElem = navLink[1];
+    if(secondElem)
+    {
+      var classList = secondElem.classList;
+      if(classList.length>0)
+      {
+        if(!classList.contains('active'))
+        classList.add('active')
+      }
+    }
+  }
+</script>
 {% endblock content %}
