@@ -1,1 +1,18 @@
-    
+{% extends 'courses/base.html' %}
+{% load static %}
+{% block title %}Success |{% endblock title %}
+{% block content %}
+<div class="global-container">
+    <div class="card login-form">
+        <div class="card-body">
+            <h3 class="card-title text-center">We have sent an email to you</h3>
+            <div class="card-text text-center">
+                Please login 
+            </div>
+            <div class="text-center">
+                <a class="btn btn-primary" href="{% url 'login_attempt' %}">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
