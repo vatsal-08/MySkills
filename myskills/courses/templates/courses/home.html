@@ -5,12 +5,12 @@
 {% block content %}
     <div class="container">
         <br/>
-        <h1 styles="color:A733FF;">Courses</h1>
+        <h1 styles="color:A733FF;">Courses <a href="{% url 'create-view' %}"><i class="fa-solid fa-circle-plus"></i></a></h1>
         <div class="row">
             {% for obj in courses %} 
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="card courses" style="width: 18rem;">
-                        <img class="card-img-top course_img" src="{{obj.img.url}}" alt="Card image cap">
+                <div class="col-lg-4 col-md-3 col-sm-2">
+                    <div class="card courses" style="width: 15rem;">
+                        <img class="card-img-top course-img" src="{{obj.img.url}}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{obj.name}}</h5>
                             <p class="card-text">
@@ -24,9 +24,9 @@
                             </p>
                             <hr class="courseline">
                             <a href="{% url 'detail' obj.pk %}" class="btn btn-primary aboutthis">About this</a>
-                            <a href="#" class="btn btn-success ">
-                                <i class="fa-solid fa-indian-rupee-sign cost"></i> {{obj.cost}}
-                            </a>
+                            <a href="#" class="btn btn-success "><i class="fa-solid fa-indian-rupee-sign cost"></i> {{obj.cost}}</a>
+                            <a href="{% url 'update' obj.pk %}" class="btn btn-warning aboutthis">Update Course</a>
+                            <a href="{% url 'delete' obj.pk %}" class="btn btn-danger aboutthis">Delete Course</a>
                         </div>
                     </div>
                 </div>

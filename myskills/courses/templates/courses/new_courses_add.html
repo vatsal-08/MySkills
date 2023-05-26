@@ -1,0 +1,35 @@
+{% extends 'courses/base.html' %}
+{% load static %}
+{% block title %}New Course Creation |{% endblock title %}
+
+{% block content %}
+    <br/><br/><br/>
+    <div class="form-container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-field">
+                <label for="name">Name :</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-field">
+                <label for="cost">Cost :</label>
+                <input type="number" id="cost" name="cost" min="0" required>
+            </div>
+            <div class="form-field">
+                <label for="uploadimg">Image:</label>
+                <input type="file" id="uploadimg" name="uploadimg" required>
+            </div>
+            <div class="form-field">
+                <label for="pdfupload">PDF :</label>
+                <input type="file" id="pdfupload" name="pdfupload" required>
+            </div>
+            <div class="form-field">
+                <label for="description">Description :</label>
+                <div class="textarea-container">
+                    <textarea id="description" name="description" rows="4" cols="50" required></textarea>
+                </div> 
+            </div>
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+{% endblock %}

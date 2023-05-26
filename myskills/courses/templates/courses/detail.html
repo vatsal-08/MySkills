@@ -3,5 +3,13 @@
 {% block title %}{{course}} |{% endblock title %}
 
 {% block content %}
-    <h1>{{course}}</h1>
+    <div class="container-detail">
+  <div class="component">
+    <h1 class="course-detail">{{course}}</h1>
+    <img src="{{course.img.url}}" alt="Image of course" class="course-detail-img" >
+    <p>Description:- {{course.description}}</p>
+    <p>Cost:- <i class="fa-solid fa-indian-rupee-sign cost"></i> {{course.cost}}</p>
+  </div>
+</div>
+
 {% endblock %}

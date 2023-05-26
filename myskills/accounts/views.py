@@ -8,13 +8,20 @@ from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
-def login(request):
+def login_attempt(request):
     return render(request,'accounts/login.html')
 
-def register(request):
+def register_attempt(request):
     return render(request,'accounts/signup.html')
+
 def success(request):
     return render(request,'accounts/success.html')
 
 def token_send(request):
     return render(request,'accounts/token_send.html')
+
+def verify(request):
+    return render(request,'accounts/token_send.html')
+
+def error_page(request):
+    return render(request,'accounts/error.html')

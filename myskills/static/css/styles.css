@@ -134,7 +134,7 @@ body {
   padding: 0.55rem 0;
   width: 130px;
   font-weight: 600;
-  background: transparent;
+  /* background: transparent; */
   margin: 0 0.5rem;
   cursor: pointer;
   color: #fff;
@@ -224,4 +224,86 @@ body {
   color: white;
   text-decoration: none;
   font-size: 1.25rem;
+}
+.fa-circle-plus {
+  font-size: 0.75em;
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.form-field {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.form-field label {
+  width: 100px;
+  margin-right: 10px;
+  text-align: right;
+}
+.form-field .textarea-container {
+  flex: 1;
+}
+
+.form-field textarea {
+  width: 100%;
+}
+
+.submit-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-left: 6.5em;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+.card.courses {
+  width: 50%;
+}
+.course-img {
+  width: 100%;
+  box-sizing: border-box;
+}
+/* .course-detail {
+  text-align: center;
+  margin-top: 10px;
+}*/
+.course-detail-img {
+  width: 150px;
+} 
+.container-detail {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh; /* Adjust this value based on your layout */
+}
+
+.component {
+  text-align: left;
+}
+.cancel-button{
+  background-color: #FFC107;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-left: 6.5em;
+}
+.cancel-button:hover {
+  background-color: #E1A802;
+}
+.aboutthis:hover{
+  color: white;
 }
