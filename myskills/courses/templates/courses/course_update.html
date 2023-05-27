@@ -5,32 +5,41 @@
 {% block content %}
     <br/><br/><br/>
     <div class="form-container">
-        <form method="post"  enctype="multipart/form-data"  action="{% url 'detail' course.pk %}">
+        <form method="post" enctype="multipart/form-data" action="{% url 'update' course.pk %}">
             {% csrf_token %}
             <div class="form-field">
-                <label for="name">Name :</label>
-                <input type="text" id="name" name="name" value="{{course.name}}" required>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="{{ course.name }}" required>
             </div>
             <div class="form-field">
-                <label for="cost">Cost :</label>
-                <input type="number" id="cost" name="cost" min="0" value="{{course.cost}}" required>
+                <label for="cost">Cost:</label>
+                <input type="number" id="cost" name="cost" min="0" value="{{ course.cost }}" required>
             </div>
             <div class="form-field">
                 <label for="uploadimg">Image:</label>
-                <input type="file" id="uploadimg" name="uploadimg" value="{{ MEDIA_URL }}{{course.img.url}}" required>
+                <input type="file" id="uploadimg" name="uploadimg" class="file-img-update">
             </div>
             <div class="form-field">
-                <label for="pdfupload">PDF :</label>
-                <input type="file" id="pdfupload" name="pdfupload" value="{{course.pdf_file}}" required>
+                <label for="pdfupload">PDF:</label>
+                <input type="file" id="pdfupload" name="pdfupload" class="file-pdf-update">
             </div>
             <div class="form-field">
-                <label for="description">Description :</label>
+                <label for="description">Description:</label>
                 <div class="textarea-container">
-                    <textarea id="description" name="description" rows="4" cols="50"  value="{{course.description}}" required>{{course.description}}</textarea>
+                    <textarea id="description" name="description" rows="4" cols="50" required>{{ course.description }}</textarea>
                 </div> 
             </div>
-            <button class="cancel-button">Cancel</button>
-            <button type="submit" class="submit-button">Update</button>
+            <button type="submit" class="submit-button" name="update-button" value="update">Update</button>
+            <button type="submit" class="cancel-button" name="update-button" value="cancel">Cancel</button>
         </form>
     </div>
+    <script>
+        function cancelUpdate() {
+            window.location.href = "{% url 'courses' %}";
+        }
+        $(function() {
+            
+        });
+
+    </script>
 {% endblock %}

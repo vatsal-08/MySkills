@@ -41,24 +41,33 @@ def create_view(request):
 def update_course(request,pk):
     course = get_object_or_404(Course,pk=pk)
     if request.method=='POST':
-        print(course.img)
-        new_name = request.POST['name']
-        new_cost = request.POST['cost']
-        new_uploadimg = request.FILES['uploadimg']
-        new_pdfupload = request.FILES['pdfupload']
-        new_description = request.POST['description']
-        course.name=new_name
-        course.cost=new_cost
-        course.img=new_uploadimg
-        course.pdf_file=new_pdfupload
-        course.description=new_description
+        action = request.POST['update-button']
+        if action=="cancel":
+            return redirect('courses')
+        name = request.POST['name']
+        cost = request.POST['cost']
+        description = request.POST['description']
+        course.name=name
+        course.cost=cost
+        course.description=description
+        if 'uploadimg' in request.FILES:
+            uploaded_img = request.FILES['uploadimg']
+            course.img = uploaded_img
+        if 'pdfupload' in request.FILES:
+            uploaded_pdf = request.FILES['pdfupload']
+            course.pdf_file = uploaded_pdf
         course.save()
-        return render(request,'courses/detail.html')
+        return redirect('courses')
+    context={
+        course:course
+    }
     return render(request,'courses/course_update.html',{'course':course})
 
 def delete_course(request,pk):
     course = get_object_or_404(Course,pk=pk)
     if request.method=='POST':
-        course.delete()
-        return redirect('courses/')
+        action = request.POST['course-delete-name']
+        if action=='yes':
+            course.delete()
+        return redirect('courses')
     return render(request,"courses/course_delete.html",context = {"course":course})

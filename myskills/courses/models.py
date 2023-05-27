@@ -20,3 +20,8 @@ class Course(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def short_description(self):
+        if len(self.description) > 50:
+            return self.description[:50] + '...'
+        return self.description
