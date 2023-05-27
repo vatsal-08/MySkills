@@ -251,7 +251,7 @@ body {
   width: 100%;
 }
 
-.submit-button {
+.submit-button{
   background-color: #4caf50;
   color: white;
   border: none;
@@ -261,6 +261,7 @@ body {
   border-radius: 5px;
   transition: background-color 0.3s ease;
   margin-left: 6.5em;
+  text-transform: uppercase;
 }
 
 .submit-button:hover {
@@ -273,13 +274,9 @@ body {
   width: 100%;
   box-sizing: border-box;
 }
-/* .course-detail {
-  text-align: center;
-  margin-top: 10px;
-}*/
 .course-detail-img {
   width: 150px;
-} 
+}
 .container-detail {
   display: flex;
   justify-content: center;
@@ -290,8 +287,8 @@ body {
 .component {
   text-align: left;
 }
-.cancel-button{
-  background-color: #FFC107;
+.cancel-button {
+  background-color: #ffc107;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -300,10 +297,41 @@ body {
   border-radius: 5px;
   transition: background-color 0.3s ease;
   margin-left: 6.5em;
+  text-transform: uppercase;
 }
 .cancel-button:hover {
-  background-color: #E1A802;
+  background-color: #e1a802;
 }
-.aboutthis:hover{
+.aboutthis:hover {
   color: white;
+}
+.file-img-update,
+.file-pdf-update {
+  color: transparent;
+}
+.file-img-update::after {
+  content: "Ignore if uploaded";
+  color: black;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.file-pdf-update::after {
+  color: black;
+  content: "Ignore if uploaded";
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.file-pdf-update::after:hover,
+.file-img-update::after:hover {
+  cursor: not-allowed;
+}
+.delete-container{
+  text-align: center;
+}
+button.delete-no, button.deletde-yes {
+  text-decoration: none;
+  display: inline-block;
+  color: white;
+  margin-right: 10px;
 }

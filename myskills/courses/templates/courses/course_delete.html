@@ -4,10 +4,17 @@
 
 {% block content %}
     <br/><br/><br/>
-    <h1>Are you sure you want to delete {{course.name}}?</h1>
+    <h1>Are you sure you want to delete "{{course.name}}"?</h1>
     <form method="POST">
         {% csrf_token %}
-        <button type="submit">Yes</button>
+        <button type="submit" class="btn btn-danger delete-yes" name="course-delete-name" value="yes">Yes</button>
+        <button class="btn btn-warning delete-no" name="course-delete-name" value="no">No</button>
     </form>
-    <a href="{% url 'detail' course.id  %}">No</a>
+    <script>    
+        $(function(){
+            $('.delete-no').on('click',function(){
+                window.location.href="{% url 'courses' %}"
+            });
+        });
+    </script>
 {% endblock %}
