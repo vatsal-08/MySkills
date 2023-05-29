@@ -6,9 +6,9 @@ from . import views
 
 urlpatterns = [
     path('',index,name='home'),
-    path('courses/',CourseList.as_view(),name='courses'),
+    path('courses/',views.list_view,name='courses'),
     path('courses/create/',create_view,name='create-view'),
-    path('courses/<int:pk>/',CourseDetail.as_view(),name='detail'),
+    path('courses/<int:pk>/',views.course_detail,name='detail'),
     path('courses/<int:pk>/update/',views.update_course,name='update'),
     path('courses/<int:pk>/delete/',views.delete_course,name='delete'),
     path('about-me/',views.about,name='about-me'),

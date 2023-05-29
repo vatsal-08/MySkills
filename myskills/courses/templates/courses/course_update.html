@@ -18,10 +18,12 @@
             <div class="form-field">
                 <label for="uploadimg">Image:</label>
                 <input type="file" id="uploadimg" name="uploadimg" class="file-img-update">
+                <span>{{img_file_name|safe}}</span>
             </div>
             <div class="form-field">
                 <label for="pdfupload">PDF:</label>
                 <input type="file" id="pdfupload" name="pdfupload" class="file-pdf-update">
+                <span>{{pdf_file_name|safe}}</span>
             </div>
             <div class="form-field">
                 <label for="description">Description:</label>
@@ -37,9 +39,5 @@
         function cancelUpdate() {
             window.location.href = "{% url 'courses' %}";
         }
-        $(function() {
-            
-        });
-
-    </script>
+        </script>
 {% endblock %}

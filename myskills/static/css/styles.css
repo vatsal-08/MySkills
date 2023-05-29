@@ -310,7 +310,6 @@ body {
   color: transparent;
 }
 .file-img-update::after {
-  content: "Ignore if uploaded";
   color: black;
   cursor: not-allowed;
   pointer-events: none;
@@ -318,7 +317,6 @@ body {
 
 .file-pdf-update::after {
   color: black;
-  content: "Ignore if uploaded";
   cursor: not-allowed;
   pointer-events: none;
 }
