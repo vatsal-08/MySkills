@@ -34,11 +34,11 @@ def course_detail(request, pk):
 
 def create_view(request):
     if request.method == 'POST':
-        name = request.POST['name']
-        cost = request.POST['cost']
+        name = request.POST.get('name')
+        cost = request.POST.get('cost')
         uploadimg = request.FILES['uploadimg']
         pdfupload = request.FILES['pdfupload']
-        description = request.POST['description']
+        description = request.POST.get('description')
         if name and cost and uploadimg and pdfupload and description:
             obj = Course(name=name, cost=cost, img=uploadimg, pdf_file=pdfupload, description=description)
             obj.save()
