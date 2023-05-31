@@ -3,15 +3,35 @@
 {% block title %}Register |{% endblock title %}
 
 {% block content %}
-    <h2><a class="auth" >Signup</a></h2>
-    <form action="" method="post">
-        {% csrf_token %}  
-        <p>{{form.username.label_tag}}{{form.username}}</p>
-        <p>{{form.email.label_tag}}{{form.email}}</p>
-        <p>{{form.password.label_tag}}{{form.password}}</p>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-        <button class="btn btn-primary" type="submit">SignUp</button>
-        <p><a class="auth" href="{% url 'login'%}">Already have an account?</a></p>
-        {{form.errors}}
-    </form> 
+        <div class="container">
+            <h2>Signup</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group-inline">
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" name="first_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Signup">
+            </div>
+        </form>
+    </div>
 {% endblock %}

@@ -4,14 +4,28 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.conf import settings
 from .models import *
-from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
 
-def login_attempt(request):
-    return render(request,'accounts/login.html')
+def login(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('courses')  
+        else:
+            return render(request, 'accounts/login.html', {'error': 'Invalid username or password'})
+    else:
+        if request.user.is_authenticated:
+            return redirect('courses')
+        else:
+            return render(request, 'login.html')
 
-def register_attempt(request):
+
+def register(request):
     return render(request,'accounts/signup.html')
 
 def success(request):
