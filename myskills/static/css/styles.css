@@ -333,7 +333,7 @@ button.delete-no, button.deletde-yes {
   color: white;
   margin-right: 10px;
 }
-body {
+/* body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 20px;
@@ -369,4 +369,4 @@ body {
 }
 .form-group-inline .form-group {
   width: 48%;
-}
+} */

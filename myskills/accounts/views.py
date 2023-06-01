@@ -22,10 +22,11 @@ def login(request):
         if request.user.is_authenticated:
             return redirect('courses')
         else:
-            return render(request, 'login.html')
+            return render(request, 'accounts/login.html')
 
 
 def register(request):
+    
     return render(request,'accounts/signup.html')
 
 def success(request):

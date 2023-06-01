@@ -23,7 +23,10 @@ def about(request):
 
 def list_view(request):
     courses = Course.objects.all()
-    context={'courses':courses}
+    context={'courses':courses,"add_course":""}
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            context["add_course"] = '<a href="{% url \'create-view\' %}"><i class="fa-solid fa-circle-plus"></i></a>'
     return render(request,'courses/home.html',context)
 
 @login_required
