@@ -5,7 +5,7 @@
 {% block content %}
     <div class="container">
         <br/>
-        <h1 styles="color:A733FF;">Courses {{add_course}}</h1>
+        <h1 styles="color:A733FF;">Courses {{add_course|safe}}</h1>
         <div class="row">
             {% for obj in courses %} 
                 <div class="col-lg-4 col-md-3 col-sm-2">

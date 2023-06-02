@@ -251,7 +251,7 @@ body {
   width: 100%;
 }
 
-.submit-button{
+.submit-button {
   background-color: #4caf50;
   color: white;
   border: none;
@@ -324,49 +324,17 @@ body {
 .file-img-update::after:hover {
   cursor: not-allowed;
 }
-.delete-container{
+.delete-container {
   text-align: center;
 }
-button.delete-no, button.deletde-yes {
+button.delete-no,
+button.deletde-yes {
   text-decoration: none;
   display: inline-block;
   color: white;
   margin-right: 10px;
 }
-/* body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
-}
-.container {
-  max-width: 350px;
-  margin: 0 auto;
-}
-.form-group {
+/* .container h2 {
+  text-align: center;
   margin-bottom: 20px;
-}
-.form-group label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-.form-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-.form-group input[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
-  padding: 8px 10px; 
-  font-size: 14px;
-}
-.form-group-inline {
-  display: flex;
-  justify-content: space-between;
-}
-.form-group-inline .form-group {
-  width: 48%;
 } */

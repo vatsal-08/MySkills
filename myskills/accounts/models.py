@@ -1,11 +1,17 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.contrib.auth.models import User
 
-class Profile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
-    auth_token = models.CharField(max_length=100)
-    is_verified = models.BooleanField(default=False)
+class CustomUser(AbstractUser):
+    email = models.EmailField(primary_key=True)
+    first_name = models.CharField(max_length=150)
+    last_name = models.CharField(max_length=150)
+    joining_date = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
-    
-    def __str__(self) -> str:
-        return super().user.username
+    is_verified = models.BooleanField(default=False)
+    auth_token = models.CharField(max_length=255)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name']
+
+    def __str__(self):
+        return self.email

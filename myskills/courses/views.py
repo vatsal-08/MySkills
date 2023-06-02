@@ -3,6 +3,7 @@ from .models import Course
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 import os
+from django.contrib.auth.decorators import user_passes_test
 
 def delete_file(file_path):
     if os.path.exists(file_path):
@@ -35,6 +36,10 @@ def course_detail(request, pk):
     context = {'course': course}
     return render(request, 'courses/detail.html', context)
 
+def superuser_check(user):
+    return user.is_superuser
+
+@user_passes_test(superuser_check)
 def create_view(request):
     if request.method == 'POST':
         name = request.POST.get('name')

@@ -17,12 +17,9 @@ def login(request):
             login(request, user)
             return redirect('courses')  
         else:
+            print(email,password,user)
             return render(request, 'accounts/login.html', {'error': 'Invalid username or password'})
-    else:
-        if request.user.is_authenticated:
-            return redirect('courses')
-        else:
-            return render(request, 'accounts/login.html')
+    return render(request, 'accounts/login.html')
 
 
 def register(request):
