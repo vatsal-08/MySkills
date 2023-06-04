@@ -5,8 +5,6 @@ class CustomUser(AbstractUser):
     email = models.EmailField(primary_key=True)
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
-    joining_date = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
     is_verified = models.BooleanField(default=False)
     auth_token = models.CharField(max_length=255)
 
