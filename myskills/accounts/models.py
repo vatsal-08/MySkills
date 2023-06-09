@@ -47,4 +47,6 @@ class CustomUser(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return self.is_admin
-    
+    class Meta:
+        verbose_name="User"
+        verbose_name_plural="Users"
