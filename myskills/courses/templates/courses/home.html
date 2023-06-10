@@ -5,7 +5,18 @@
 {% block content %}
     <div class="container">
         <br/>
-        <h1 styles="color:A733FF;">Courses {{add_course|safe}}</h1>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <h6>{{message}}</h6>        
+                {% endfor %}
+            </div>  
+        {% endif %}
+        <h1 styles="color:A733FF;">Courses 
+            {% if request.user.is_authenticated and request.user.is_superuser %}
+            <a href="{% url add_course.button_url %}"><i class="{{add_course.classes}}"></i></a>
+            {% endif %}
+        </h1>
         <div class="row">
             {% for obj in courses %} 
                 <div class="col-lg-4 col-md-3 col-sm-2">

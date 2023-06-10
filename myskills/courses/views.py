@@ -17,17 +17,20 @@ def truncate_text(text, max_length):
     return truncated_text
 
 def index(request):
-    return redirect("courses/")
+    return redirect("courses")
 
 def about(request):
     return render(request, 'courses/about-me.html')
 
 def list_view(request):
     courses = Course.objects.all()
-    context={"courses":courses,"add_course":""}
+    context={"courses":courses}
+    context["add_course"]={"button_url":"","classes":""}
     if request.user.is_authenticated:
         if request.user.is_superuser:
-            context["add_course"] = '<a href="{% url \'create-view\' %}"><i class="fa-solid fa-circle-plus"></i></a>'
+            context["add_course"]={
+            "button_url":"create-view",
+            "classes":"fa-solid fa-circle-plus"}
     return render(request,'courses/home.html',context)
 
 @login_required
@@ -39,8 +42,11 @@ def course_detail(request, pk):
 def superuser_check(user):
     return user.is_superuser
 
-@user_passes_test(superuser_check)
 def create_view(request):
+    if not request.user.is_authenticated:
+        return redirect('courses')
+    if not request.user.is_superuser:
+        return redirect('courses')
     if request.method == 'POST':
         name = request.POST.get('name')
         cost = request.POST.get('cost')
@@ -68,12 +74,10 @@ def update_course(request, pk):
         cost = request.POST.get('cost')
         description = request.POST.get('description')
 
-        # Update course fields
         course.name = name
         course.cost = cost
         course.description = description
 
-        # Handle image upload
         if 'uploadimg' in request.FILES:
             try:
                 uploaded_img = request.FILES['uploadimg']
@@ -83,10 +87,8 @@ def update_course(request, pk):
 
                 course.img = uploaded_img
             except Exception as e:
-                # Handle the exception (e.g., log the error, display a message)
                 print(f"Error uploading image: {str(e)}")
 
-        # Handle PDF upload
         if 'pdfupload' in request.FILES:
             try:
                 uploaded_pdf = request.FILES['pdfupload']
@@ -96,15 +98,12 @@ def update_course(request, pk):
 
                 course.pdf_file = uploaded_pdf
             except Exception as e:
-                # Handle the exception (e.g., log the error, display a message)
                 print(f"Error uploading PDF: {str(e)}")
 
-        # Save the updated course
         course.save()
 
         return redirect('courses')
 
-    # Truncate file names for display
     pdf_file_name, extension1 = os.path.splitext(pdf_file_name)
     pdf_file_name = truncate_text(pdf_file_name, 15) + extension1
     
@@ -129,15 +128,12 @@ def delete_course(request, pk):
         action = request.POST.get('course-delete-name')
 
         if action == 'yes':
-            # Remove the PDF file
             if course.pdf_file:
                 delete_file(course.pdf_file.path)
 
-            # Remove the image file
             if course.img:
                 delete_file(course.img.path)
 
-            # Delete the course
             course.delete()
 
         return redirect('courses')

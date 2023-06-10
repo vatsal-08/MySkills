@@ -3,15 +3,17 @@
 {% block title %}Success |{% endblock title %}
 {% block content %}
 <div class="global-container">
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <h6></h6>        
+            {% endfor %}
+        </div>  
+    {% endif %}
     <div class="card login-form">
         <div class="card-body">
-            <h3 class="card-title text-center">We have sent an email to you</h3>
-            <div class="card-text text-center">
-                Please login 
-            </div>
-            <div class="text-center">
-                <a class="btn btn-primary" href="{% url 'login_attempt' %}">Login</a>
-            </div>
+            <h3 class="card-title text-center">Successfully Verified</h3>
+            <div class="card-text text-center"></div>
         </div>
     </div>
 </div>

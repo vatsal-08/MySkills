@@ -39,33 +39,34 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">MySkills</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarTogglerDemo02"
-          aria-controls="navbarTogglerDemo02"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% if request.user.is_authenticated %}
             <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="{% url 'home' %}"
-                >Home</a
-              >
+              <a class="nav-link" href="#">Hi, {{request.user.first_name}}</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}" >Courses</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'about-me' %}">About Me</a>
             </li>
-            {% if user.is_anonymous %}
+            {% if request.user.is_authenticated %}
+              {% if not request.user.is_verified %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'token-send' %}">Verify your account</a>
+                </li>
+              {% endif %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Login</a>
+              <a class="nav-link" href="{% url 'logout-view' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login-view' %}">Login</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'register' %}">Register</a>
@@ -81,9 +82,6 @@
             />
             <button class="btn btn-outline-light" type="submit">Search</button>
           </form>
-          <a class="nav-link" href="#">
-            <i class="fa-solid fa-cart-plus"></i>
-          </a>
         </div>
       </div>
     </nav>

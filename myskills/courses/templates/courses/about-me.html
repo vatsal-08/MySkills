@@ -39,27 +39,6 @@
 </div>
 <script>
   var navLink = document.getElementsByClassName('nav-link')
-  if(navLink.length>0)
-  {
-    var firstElem = navLink[0];
-    if(firstElem)
-    {
-      var classList = firstElem.classList;
-      if(classList.length>0)
-      {
-        classList.toggle('active')
-      }
-    }
-    var secondElem = navLink[1];
-    if(secondElem)
-    {
-      var classList = secondElem.classList;
-      if(classList.length>0)
-      {
-        if(!classList.contains('active'))
-        classList.add('active')
-      }
-    }
-  }
+  
 </script>
 {% endblock content %}
