@@ -40,8 +40,6 @@ class CustomUser(AbstractBaseUser):
     def __str__(self):
         return self.email
 
-    # Add the necessary methods required by AbstractBaseUser
-
     def has_perm(self, perm, obj=None):
         return self.is_admin
 
