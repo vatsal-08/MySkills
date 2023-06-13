@@ -1,0 +1,22 @@
+{% extends 'courses/base.html' %}
+{% load static %}
+{% block title %}Search |{% endblock title %}
+
+{% block content %}
+<h1>Search Results</h1>
+
+<p>Search Query: {{ query }}</p>
+
+<ul>
+    {% for result in results %}
+        <li>
+            <h2>{{ result.field1 }}</h2>
+            <p>{{ result.field2 }}</p>
+        </li>
+    {% empty %}
+        <p>No results found.</p>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
