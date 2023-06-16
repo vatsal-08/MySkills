@@ -19,13 +19,13 @@ def truncate_text(text, max_length):
 def index(request):
     query=request.GET.get('q','')
     courses = Course.objects.all()
-    # if query:
-    #     courses = courses.filter(name__icontains=query)
-    #     context={
-    #         'query':query,
-    #         'courses':courses
-    #     }
-    #     return render(request,"courses/search.html",context)
+    if query:
+        courses = courses.filter(name__icontains=query)
+        context={
+            'query':query,
+            'courses':courses
+        }
+        return render(request,"courses/search.html",context)
     return redirect("courses")
 
 def about(request):
