@@ -3,15 +3,13 @@
 {% block title %}Search |{% endblock title %}
 
 {% block content %}
-<h1>Search Results</h1>
-
+<h1>Search Results:</h1>
 <p>Search Query: {{ query }}</p>
-
 <ul>
-    {% for result in results %}
+    {% for course in courses %}
         <li>
-            <h2>{{ result.field1 }}</h2>
-            <p>{{ result.field2 }}</p>
+            <h2>{{ course.name }}</h2>
+            <p>{{ course.cost }}</p>
         </li>
     {% empty %}
         <p>No results found.</p>

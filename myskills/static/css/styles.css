@@ -275,17 +275,7 @@ body {
   box-sizing: border-box;
 }
 .course-detail-img {
-  width: 150px;
-}
-.container-detail {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  height: 100vh; /* Adjust this value based on your layout */
-}
-
-.component {
-  text-align: left;
+  width: 200px;
 }
 .cancel-button {
   background-color: #ffc107;
@@ -314,7 +304,9 @@ body {
   cursor: not-allowed;
   pointer-events: none;
 }
-
+.container-detail{
+  margin: 15px;
+}
 .file-pdf-update::after {
   color: black;
   cursor: not-allowed;

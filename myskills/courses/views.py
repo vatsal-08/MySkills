@@ -17,16 +17,16 @@ def truncate_text(text, max_length):
     return truncated_text
 
 def index(request):
-    query=request.GET.get('q','')
-    courses = Course.objects.all()
-    if query:
-        courses = courses.filter(name__icontains=query)
-        context={
-            'query':query,
-            'courses':courses
-        }
-        return render(request,"courses/search.html",context)
     return redirect("courses")
+
+def search_view(request):
+    query = request.GET.get('q','')
+    results = Course.objects.filter(name__icontains=query)  
+    context={
+        'query':query,
+        'results':results
+    }
+    return render(request,'courses/search.html',context)
 
 def about(request):
     return render(request, 'courses/about-me.html')
@@ -42,7 +42,6 @@ def list_view(request):
             "classes":"fa-solid fa-circle-plus"}
     return render(request,'courses/home.html',context)
 
-@login_required
 def course_detail(request, pk):
     course = get_object_or_404(Course, pk=pk)
     context = {'course': course}
@@ -146,11 +145,3 @@ def delete_course(request, pk):
 
     return render(request, "courses/course_delete.html", context={"course": course})
 
-def search_view(request):
-    query = request.GET.get('q','')
-    results = Course.objects.filter(name__icontains=query)  
-    context={
-        'query':query,
-        'results':results
-    }
-    return render(request,'courses/search.html',context)
