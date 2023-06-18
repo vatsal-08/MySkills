@@ -1,9 +1,8 @@
 from django.shortcuts import redirect, render
 from .models import Course
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 import os
-from django.contrib.auth.decorators import user_passes_test
+from django.db.models import Q
 
 def delete_file(file_path):
     if os.path.exists(file_path):
@@ -20,11 +19,12 @@ def index(request):
     return redirect("courses")
 
 def search_view(request):
-    query = request.GET.get('q','')
-    results = Course.objects.filter(name__icontains=query)  
+    query = request.GET.get('query')
+    condition = Q(name__icontains=query) | Q(description__icontains=query)
+    courses = Course.objects.filter(condition)  
     context={
         'query':query,
-        'results':results
+        'courses':courses
     }
     return render(request,'courses/search.html',context)
 
