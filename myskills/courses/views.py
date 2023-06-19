@@ -3,6 +3,8 @@ from .models import Course
 from django.shortcuts import get_object_or_404
 import os
 from django.db.models import Q
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 def delete_file(file_path):
     if os.path.exists(file_path):
@@ -32,15 +34,26 @@ def about(request):
     return render(request, 'courses/about-me.html')
 
 def list_view(request):
-    courses = Course.objects.all()
-    context={"courses":courses}
-    context["add_course"]={"button_url":"","classes":""}
-    if request.user.is_authenticated:
-        if request.user.is_superuser:
-            context["add_course"]={
-            "button_url":"create-view",
-            "classes":"fa-solid fa-circle-plus"}
-    return render(request,'courses/home.html',context)
+    if request.is_ajax():
+        query = request.GET.get('query')
+        condition = Q(name__icontains=query) | Q(description__icontains=query)
+        courses = Course.objects.filter(condition)
+        html = render_to_string('courses/course_list.html', {'courses': courses})
+        return JsonResponse({'html': html})
+    else:
+        courses = Course.objects.all()
+        context = {"courses": courses}
+        context["add_course"] = {"button_url": "", "classes": ""}
+        
+        if request.user.is_authenticated:
+            if request.user.is_superuser:
+                context["add_course"] = {
+                    "button_url": "create-view",
+                    "classes": "fa-solid fa-circle-plus",
+                }
+        
+        return render(request, 'courses/home.html', context)
+
 
 def course_detail(request, pk):
     course = get_object_or_404(Course, pk=pk)

@@ -3,45 +3,20 @@
 {% block title %}Home |{% endblock title %}
 
 {% block content %}
-    <div class="container">
-        <br/>
-        {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-            <h6>{{message}}</h6>        
-            {% endfor %}
-        </div>  
+    <br/>
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <h6>{{message}}</h6>        
+        {% endfor %}
+    </div>  
+    {% endif %}
+    <h1 styles="color:A733FF;">Courses 
+        {% if request.user.is_authenticated and request.user.is_superuser %}
+        <a href="{% url add_course.button_url %}"><i class="{{add_course.classes}}"></i></a>
         {% endif %}
-        <h1 styles="color:A733FF;">Courses 
-            {% if request.user.is_authenticated and request.user.is_superuser %}
-            <a href="{% url add_course.button_url %}"><i class="{{add_course.classes}}"></i></a>
-            {% endif %}
-        </h1>
-        <div class="row">
-            {% for obj in courses %} 
-            <div class="col-lg-3 col-md-4 col-sm-2">
-                <div class="card courses" style="width: 15rem;">
-                    <img class="card-img-top course-img" src="{{obj.img.url}}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{obj.name}}</h5>
-                        <p class="card-text">
-                            {{obj.description|slice:"0:50"}}
-                                {% if obj.description|length >= 47 %}
-                                ...
-                                {% else %}
-                                    <br>
-                                    <br> 
-                                    {% endif %} 
-                                </p>
-                            <hr class="courseline">
-                            <a href="{% url 'detail' obj.pk %}" class="btn btn-primary aboutthis">About this</a>
-                            <a href="#" class="btn btn-success "><i class="fa-solid fa-indian-rupee-sign cost"></i> {{obj.cost}}</a>
-                            <a href="{% url 'update' obj.pk %}" class="btn btn-warning aboutthis">Update</a>
-                            <a href="{% url 'delete' obj.pk %}" class="btn btn-danger aboutthis">Delete</a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div> 
+    </h1>
+    <div class="container">
+        {% include 'courses/course_list.html' %}
+    </div>
 {% endblock %}

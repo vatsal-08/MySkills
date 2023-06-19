@@ -1,0 +1,28 @@
+<div class="row" id="course-list">
+    {% for obj in courses %} 
+    <div class="col-lg-3 col-md-4 col-sm-2">
+        <div class="card courses" style="width: 15rem;">
+            <img class="card-img-top course-img" src="{{obj.img.url}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{obj.name}}</h5>
+                <p class="card-text">
+                    {{obj.description|slice:"0:50"}}
+                        {% if obj.description|length >= 47 %}
+                        ...
+                        {% else %}
+                            <br>
+                            <br> 
+                            {% endif %} 
+                        </p>
+                    <hr class="courseline">
+                    <a href="{% url 'detail' obj.pk %}" class="btn btn-primary aboutthis">About this</a>
+                    <a href="#" class="btn btn-success "><i class="fa-solid fa-indian-rupee-sign cost"></i> {{obj.cost}}</a>
+                    <a href="{% url 'update' obj.pk %}" class="btn btn-warning aboutthis">Update</a>
+                    <a href="{% url 'delete' obj.pk %}" class="btn btn-danger aboutthis">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No courses found.</p>
+    {% endfor %}
+</div>
