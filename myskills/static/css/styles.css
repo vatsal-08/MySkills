@@ -304,7 +304,7 @@ body {
   cursor: not-allowed;
   pointer-events: none;
 }
-.container-detail{
+.container-detail {
   margin: 15px;
 }
 .file-pdf-update::after {
@@ -325,4 +325,10 @@ button.deletde-yes {
   display: inline-block;
   color: white;
   margin-right: 10px;
+}
+button.btn.btn-outline-light[type="submit"] {
+  width: 60px;
+}
+.title-courses{
+  margin-left: 47px;
 }
