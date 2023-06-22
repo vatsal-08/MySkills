@@ -22,37 +22,31 @@ def index(request):
 
 def search_view(request):
     query = request.GET.get('query')
-    condition = Q(name__icontains=query) | Q(description__icontains=query)
-    courses = Course.objects.filter(condition)  
-    context={
-        'query':query,
-        'courses':courses
-    }
-    return render(request,'courses/search.html',context)
+    if query:
+        condition = Q(name__icontains=query) | Q(description__icontains=query)
+        courses = Course.objects.filter(condition)  
+        context={
+            'query':query,
+            'courses':courses
+        }
+        return render(request,'courses/search.html',context)
+    return redirect('courses')
+
 
 def about(request):
     return render(request, 'courses/about-me.html')
 
 def list_view(request):
-    if request.is_ajax():
-        query = request.GET.get('query')
-        condition = Q(name__icontains=query) | Q(description__icontains=query)
-        courses = Course.objects.filter(condition)
-        html = render_to_string('courses/course_list.html', {'courses': courses})
-        return JsonResponse({'html': html})
-    else:
-        courses = Course.objects.all()
-        context = {"courses": courses}
-        context["add_course"] = {"button_url": "", "classes": ""}
-        
-        if request.user.is_authenticated:
-            if request.user.is_superuser:
-                context["add_course"] = {
-                    "button_url": "create-view",
-                    "classes": "fa-solid fa-circle-plus",
-                }
-        
-        return render(request, 'courses/home.html', context)
+    courses = Course.objects.all()
+    context = {"courses": courses}
+    context["add_course"] = {"button_url": "", "classes": ""}
+    if request.user.is_authenticated:
+        if request.user.is_superuser:
+            context["add_course"] = {
+                "button_url": "create-view",
+                "classes": "fa-solid fa-circle-plus",
+            }
+    return render(request, 'courses/home.html', context)
 
 
 def course_detail(request, pk):
