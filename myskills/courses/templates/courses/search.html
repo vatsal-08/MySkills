@@ -3,18 +3,10 @@
 {% block title %}Search |{% endblock title %}
 
 {% block content %}
-<h1>Search Results:</h1>
-<p>Search Query: {{ query }}</p>
-<ul>
-    {% for course in courses %}
-        <li>
-            <h2>{{ course.name }}</h2>
-            <p>{{ course.cost }}</p>
-        </li>
-    {% empty %}
-        <p>No results found.</p>
-    {% endfor %}
-</ul>
-
-
+<br/>
+<h1 style="margin-left:30px;">Search Results:</h1>
+<h3 style="margin-left:40px;">Search Query: {{ query }}</h3>
+<div class="container">
+    {% include 'courses/course_list.html' %}
+</div>
 {% endblock %}
