@@ -45,15 +45,18 @@
     }
 </style>
 
+{% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'debug' %}secondary{% elif message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>  
+{% endif %}
 <div class="container">
     <h2>Login</h2>
-    {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-                <h6>{{message}}</h6>        
-            {% endfor %}
-        </div>  
-    {% endif %}
     <form action="" method="POST">
         {% csrf_token %}
         <div class="form-group">
@@ -64,6 +67,12 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
         </div>
+        <p>
+            <a href="{% url 'register' %}">Don't have an account?</a>
+        </p>
+        <p>
+            <a href="{% url 'register' %}">Forgot Password?</a>
+        </p>
         <div class="form-group">
             <input type="submit" value="Login">
         </div>
