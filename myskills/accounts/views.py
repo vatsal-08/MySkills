@@ -62,7 +62,9 @@ def token_send(request):
     return render(request,'accounts/token_send.html')
 
 def verify(request,auth_token):
-    if request.user.is_authenticated and request.user.is_verified:
+    if not request.user.is_authenticated:
+        return redirect('login-view')
+    if request.user.is_verified:
         messages.info(request,"You are already verified")
         return redirect('courses')
     try:
@@ -73,8 +75,8 @@ def verify(request,auth_token):
             messages.success(request,"Your account has been verified")
             return redirect('success')
         else:
-            messages.error(request,"")
-            return redirect('error')
+            messages.error(request,"Some error occured")
+            return redirect('courses')
     except Exception as e:
         messages.error(request,"Some error occured")
         return redirect('error')

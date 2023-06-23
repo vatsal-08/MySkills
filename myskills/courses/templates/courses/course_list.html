@@ -1,13 +1,13 @@
 <div class="row" id="course-list">
     {% for obj in courses %} 
-    <div class="col-lg-3 col-md-4 col-sm-2">
-        <div class="card courses" style="width: 15rem;">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="card courses mb-4" style="width: 15rem;">
             <img class="card-img-top course-img" src="{{obj.img.url}}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{obj.name}}</h5>
                 <p class="card-text">
-                    {{obj.description|slice:"0:50"}}
-                        {% if obj.description|length >= 47 %}
+                    {{obj.description|slice:"0:45"}}
+                        {% if obj.description|length >= 45 %}
                         ...
                         {% else %}
                             <br>
