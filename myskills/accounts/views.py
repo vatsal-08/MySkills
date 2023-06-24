@@ -69,11 +69,12 @@ def verify(request,auth_token):
         return redirect('courses')
     try:
         profile_obj = CustomUser.objects.filter(auth_token=auth_token).first()
-        if profile_obj.email==request.user.email:
+        if profile_obj.email==request.user.email and profile_obj.auth_token==request.user.auth_token:
             profile_obj.is_verified = True
+            profile_obj.auth_token = str(uuid.uuid4())
             profile_obj.save()
             messages.success(request,"Your account has been verified")
-            return redirect('success')
+            return redirect('courses')
         else:
             messages.error(request,"Some error occured")
             return redirect('courses')
