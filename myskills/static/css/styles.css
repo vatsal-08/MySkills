@@ -353,3 +353,6 @@ button.btn.btn-outline-light[type="submit"] {
 ::-webkit-scrollbar-thumb:hover {
   background: #333333; 
 }
+li a.dropdown-item:hover{
+  background-color:#3E8BFD;
+}
