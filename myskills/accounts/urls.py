@@ -9,4 +9,7 @@ urlpatterns = [
     path('success/', success, name="success"),
     path('verify/<auth_token>/', verify, name="verify"),
     path('error/', error_page, name="error"),
+    path('forgot/', forgot, name="forgot"),
+    path('reset/', reset, name="reset-password"),
+    path('reset/<auth_token>/', reset_password, name="reset-password"),
 ]
