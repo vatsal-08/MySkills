@@ -75,6 +75,7 @@
             <li><a class="dropdown-item" href="{% url 'logout-view' %}">Logout</a></li>
             {% else %}
             <li><a class="dropdown-item" href="{% url 'login-view' %}">Login</a></li>
+            <li><a class="dropdown-item" href="{% url 'forgot' %}">Forgot Password</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
             {% endif %}

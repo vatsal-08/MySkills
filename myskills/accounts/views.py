@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.conf import settings
 from django.core.mail import send_mail
+from django.contrib.auth.hashers import make_password
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -85,9 +86,64 @@ def verify(request,auth_token):
 def error_page(request):
     return render(request,'accounts/error.html')
 
+def forgot(request):
+    if request.method=='POST':
+        email = request.POST.get('email','')
+        profile = CustomUser.objects.filter(email=email).first()
+        send_mail_for_reset_password(email,profile.auth_token)
+        return render(request,"accounts/reset.html")
+    return render(request,"accounts/forgot.html")
+
+def reset(request):
+    return render(request,"accounts/reset.html")
+
+def reset_password(request,auth_token):
+    if request.method=='POST':
+        email = request.POST.get('email','')
+        password1 = request.POST.get('password','')
+        password2 = request.POST.get('confirm_password','')
+        profile = CustomUser.objects.filter(email=email).first()
+        if(email==''):
+            messages.error(request,"Email is empty")
+            profile.auth_token = str(uuid.uuid4())
+            return redirect('courses')
+        if profile is None:
+            messages.error(request,"User doesnt exist")
+            return redirect('courses')
+        if profile.auth_token!=auth_token:
+            profile.auth_token = str(uuid.uuid4())
+            profile.save()
+            messages.error(request,"Invalid Link")
+            return redirect('courses')
+        if password1!=password2:
+            profile.auth_token = str(uuid.uuid4())
+            profile.save()
+            messages.error(request,"Passwords don't match")
+            return redirect('courses')
+        profile.password = make_password(password1)
+        profile.auth_token = str(uuid.uuid4())
+        profile.save()
+        messages.success(request,"Password succesfully changed")
+        subject = "Password changed successfullly"
+        message="Your account password is changed successfully"
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list=[email]
+        send_mail(subject,message,email_from,recipient_list)
+        return redirect('courses')
+    profile = CustomUser.objects.filter(auth_token=auth_token).first()
+    context={"profile" : profile}
+    return render(request,"accounts/reset_password.html",context)
+
 def send_mail_for_verification(email,token):
     subject = "Your account needs to be verified"
     message = f'Click on the link to verify your account http://127.0.0.1:8000/accounts/verify/{token}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email]
+    send_mail(subject,message,email_from,recipient_list)
+
+def send_mail_for_reset_password(email,token):
+    subject = "Password change request"
+    email_from = settings.EMAIL_HOST_USER
+    message=f'Click on the link to redirect to password reset link of your account http://127.0.0.1:8000/accounts/reset/{token}'
+    recipient_list=[email]
     send_mail(subject,message,email_from,recipient_list)
