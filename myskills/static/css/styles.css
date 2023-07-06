@@ -121,9 +121,9 @@ body {
 .about-right h2:hover {
   font-family: "Montserrat", sans-serif;
 }
-.about-btns {
-  display: flex;
-  margin: 2rem 0;
+.about-btns button{
+  margin:0 0.5em ;
+  width: 10rem;
 }
 .btn {
   border: none;
@@ -277,10 +277,10 @@ body {
   display: block;
   width: 100%;
   height: auto;
-  transition: all 0.5s ease; 
+  transition: all 0.5s ease;
 }
 .card-img-top.course-img:hover {
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
 .course-detail-img {
   width: 200px;
@@ -337,22 +337,22 @@ button.deletde-yes {
 button.btn.btn-outline-light[type="submit"] {
   width: 60px;
 }
-.title-courses{
+.title-courses {
   margin-left: 47px;
 }
 ::-webkit-scrollbar {
   width: 15px;
 }
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px #999999; 
+  box-shadow: inset 0 0 5px #999999;
 }
 ::-webkit-scrollbar-thumb {
-  background: #555555; 
+  background: #555555;
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #333333; 
+  background: #333333;
 }
-li a.dropdown-item:hover{
-  background-color:#3E8BFD;
+li a.dropdown-item:hover {
+  background-color: #3e8bfd;
 }
