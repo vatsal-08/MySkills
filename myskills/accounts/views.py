@@ -10,6 +10,9 @@ from django.contrib.auth import logout
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.hashers import make_password
+from django.utils.safestring import mark_safe
+from django.urls import reverse
+from django.utils.html import format_html
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -103,12 +106,13 @@ def reset_password(request,auth_token):
         password1 = request.POST.get('password','')
         password2 = request.POST.get('confirm_password','')
         profile = CustomUser.objects.filter(email=email).first()
-        if(email==''):
-            messages.error(request,"Email is empty")
-            profile.auth_token = str(uuid.uuid4())
-            return redirect('courses')
         if profile is None:
             messages.error(request,"User doesnt exist")
+            return redirect('courses')
+        if email=='':
+            messages.error(request,"Email is empty")
+            profile.auth_token = str(uuid.uuid4())
+            profile.save()
             return redirect('courses')
         if profile.auth_token!=auth_token:
             profile.auth_token = str(uuid.uuid4())
@@ -123,7 +127,9 @@ def reset_password(request,auth_token):
         profile.password = make_password(password1)
         profile.auth_token = str(uuid.uuid4())
         profile.save()
-        messages.success(request,"Password succesfully changed")
+        login_link = login_link = format_html('<b><a href="{}" style="color: green;">Login</a></b>', reverse('login-view'))
+        message = format_html('Password successfully changed. Click here to {}.', login_link)
+        messages.success(request,message)
         subject = "Password changed successfullly"
         message="Your account password is changed successfully"
         email_from = settings.EMAIL_HOST_USER
@@ -131,6 +137,10 @@ def reset_password(request,auth_token):
         send_mail(subject,message,email_from,recipient_list)
         return redirect('courses')
     profile = CustomUser.objects.filter(auth_token=auth_token).first()
+    prof2 = CustomUser.objects.filter(auth_token=auth_token).first()
+    if prof2 is None:
+        messages.error(request,"Old link or invalid link")
+        return redirect('courses')
     context={"profile" : profile}
     return render(request,"accounts/reset_password.html",context)
 
