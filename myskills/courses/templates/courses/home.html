@@ -15,9 +15,7 @@
     {% endif %}
 
     <h1 styles="color:A733FF;" class="title-courses">Courses 
-        {% if request.user.is_authenticated and request.user.is_superuser %}
-        <a href="{% url add_course.button_url %}"><i class="{{add_course.classes}}"></i></a>
-        {% endif %}
+    {{add_course_button|safe}}    
     </h1>
     <div class="container">
         {% include 'courses/course_list.html' %}
