@@ -17,7 +17,6 @@ INSTALLED_APPS = [
     'payments.apps.PaymentsConfig',
     'accounts.apps.AccountsConfig',
     'fontawesomefree',
-    'celery'
 ]
 
 MIDDLEWARE = [
@@ -84,11 +83,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'django-db'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 EMAIL_BACKEND = config('EMAIL_BACKEND')
