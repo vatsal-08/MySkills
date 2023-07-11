@@ -141,19 +141,26 @@ def delete_course(request, pk):
     if not request.user.is_authenticated or not request.user.is_superuser:
         messages.error(request,"You are not authorised")
         return redirect('courses')
-    course = get_object_or_404(Course, pk=pk)
-
+    try:
+        course = Course.objects.get(pk=pk)
+    except Course.DoesNotExist:
+        messages.error(request,"Course doesn't exists")
+        return redirect('courses')
     if request.method == 'POST':
         action = request.POST.get('course-delete-name')
 
         if action == 'yes':
-            if course.pdf_file:
-                delete_file(course.pdf_file.path)
+            try:
+                if course.pdf_file:
+                    delete_file(course.pdf_file.path)
 
-            if course.img:
-                delete_file(course.img.path)
-
-            course.delete()
+                if course.img:
+                    delete_file(course.img.path)
+                course.delete()
+                messages.success(request, "Course deleted successfully")
+            except Exception as e:
+                messages.error(request,"Some error occured")
+                return redirect('courses')
 
         return redirect('courses')
 
