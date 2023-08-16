@@ -1,6 +1,4 @@
-from collections.abc import Sequence
 from django.contrib import admin
-from django.http.request import HttpRequest
 from .models import CustomUser
 
 
@@ -13,6 +11,7 @@ class CustomUserAdmin(admin.ModelAdmin):
         fieldsets = [
             ('Personal Information', {'fields': ('email','first_name', 'last_name')}),
             ('Status', {'fields': ('is_active', 'is_superuser', 'is_staff', 'is_admin','is_verified')}),
+            ('Tokens', {'fields': ('auth_token',)}),
         ]
         return fieldsets
     
