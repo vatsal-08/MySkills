@@ -19,11 +19,20 @@ def truncate_text(text, max_length):
 
 def index(request):
     return redirect("courses")
-
+def remove_spaces(str):
+    str = str.split()
+    cleaned_str = " ".join(str)
+    return cleaned_str
 def search_view(request):
     query = request.GET.get('query')
+    query = remove_spaces(query)
     if query:
-        condition = Q(name__icontains=query) | Q(description__icontains=query)
+        condition = (
+            Q(name__icontains=query) | 
+            Q(description__icontains=query) |
+            Q(cost__icontains=query)
+        )
+
         courses = Course.objects.filter(condition)  
         context={
             'query':query,
