@@ -10,7 +10,6 @@ from django.contrib.auth import logout
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.hashers import make_password
-from django.utils.safestring import mark_safe
 from django.urls import reverse
 from django.utils.html import format_html
 
@@ -137,8 +136,7 @@ def reset_password(request,auth_token):
         send_mail(subject,message,email_from,recipient_list)
         return redirect('courses')
     profile = CustomUser.objects.filter(auth_token=auth_token).first()
-    prof2 = CustomUser.objects.filter(auth_token=auth_token).first()
-    if prof2 is None:
+    if profile is None:
         messages.error(request,"Old link or invalid link")
         return redirect('courses')
     context={"profile" : profile}
