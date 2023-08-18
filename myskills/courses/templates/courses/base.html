@@ -82,10 +82,7 @@
           </ul>
         </li>
           </ul>
-          <form class="d-flex" id="search-form" action="{% url 'search' %}" method="GET" autocomplete="off">
-              <input class="form-control me-2" type="search" name="query" value="{{ query }}" placeholder="Search for Courses" aria-label="Search">
-              <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-          </form>
+          {% include "courses/search_list.html" %}
         </div>
       </div>
     </nav>

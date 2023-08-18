@@ -5,7 +5,7 @@ import os
 from django.db.models import Q
 from django.contrib import messages
 from django.urls import reverse
-
+from django.http import JsonResponse
 def delete_file(file_path):
     if os.path.exists(file_path):
         os.remove(file_path)
@@ -55,6 +55,32 @@ def list_view(request):
     context["add_course_button"]=add_course_button
     return render(request, 'courses/home.html', context)
 
+def search_results(request):
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        course = request.POST.get('course','')
+        course = remove_spaces(course)
+        res=None
+        if course:
+            condition=(
+                Q(name__icontains=course)|
+                Q(description__icontains=course)|
+                Q(cost__icontains=course)
+            )
+            courses = Course.objects.filter(condition)
+            if len(courses)>0 and len(course)>0:
+                data=[]
+                for pos in courses:
+                    item={
+                        'pk':pos.pk,
+                        'name':pos.name,
+                        'cost':pos.cost
+                    }
+                    data.append(item)
+                res=data
+            else:
+                res="No Courses Found"
+        return JsonResponse({'data':res})
+    return JsonResponse({})
 
 def course_detail(request, pk):
     try:
