@@ -1,8 +1,9 @@
-<form class="d-flex" id="search-form" action="{% url 'search' %}" method="GET" autocomplete="off">
-    {% csrf_token %}
-    <input class="form-control me-2" type="search" name="query" value="{{ query }}" placeholder="Search for Courses" aria-label="Search">
-    <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-</form>
-<div id="results-box" class="results-card not-visible" style="display: none;">
-
+<div class="text-center">
+    <form class="d-flex" id="search-form" action="{% url 'search' %}" method="GET" autocomplete="off">
+        {% csrf_token %}
+        <input class="form-control me-2 p-1 search" type="search" name="query" value="{{ query }}" placeholder="Search for Courses" aria-label="Search">
+        <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+    <div id="results-box" class="results-card">
+    </div>
 </div>

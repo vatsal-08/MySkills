@@ -121,8 +121,8 @@ body {
 .about-right h2:hover {
   font-family: "Montserrat", sans-serif;
 }
-.about-btns button{
-  margin:0 0.5em ;
+.about-btns button {
+  margin: 0 0.5em;
   width: 10rem;
 }
 .btn {

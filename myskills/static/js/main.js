@@ -14,11 +14,13 @@ $(document).ready(function () {
       },
       success: (res) => {
         const data = res.data;
-        console.log(data);
+        // console.log(data);
         if (Array.isArray(data)) {
-          console.log("We have an array");
+          for (let i = 0; i < data.length; i++) {
+            console.log(data[i]);
+          }
         } else {
-          console.log(data, searchInput[0]);
+          if (data !== null) console.log(searchInput[0].value);
           //data is null
         }
       },
