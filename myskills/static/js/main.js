@@ -3,7 +3,7 @@ $(document).ready(function () {
   const searchForm = $("#search-form");
   const searchInput = $("input[name='query']");
   const resultBox = $("#results-box");
-  const csrf = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+  const csrf = $("input[name='csrfmiddlewaretoken']").val();
   const sendSearchData = (course) => {
     $.ajax({
       type: "POST",
@@ -14,10 +14,9 @@ $(document).ready(function () {
       },
       success: (res) => {
         const data = res.data;
-        // console.log(data);
         if (Array.isArray(data)) {
           for (let i = 0; i < data.length; i++) {
-            console.log(data[i]);
+            console.log(data[i].name, data[i].cost);
           }
         } else {
           if (data !== null) console.log(searchInput[0].value);
