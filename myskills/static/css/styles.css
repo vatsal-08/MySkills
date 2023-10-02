@@ -356,3 +356,8 @@ button.btn.btn-outline-light[type="submit"] {
 li a.dropdown-item:hover {
   background-color: #3e8bfd;
 }
+.search-list {
+  color: black;
+  background: #fff;
+  width:2em;
+}
