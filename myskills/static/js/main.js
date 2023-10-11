@@ -4,8 +4,6 @@ $(document).ready(function () {
   const searchInput = $("input[name='query']");
   const resultBox = $("#results-box");
   const csrf = $("input[name='csrfmiddlewaretoken']").val();
-  var textCenterWidth = $(".text-center").width();
-  $("#resultsbox").width(textCenterWidth);
   const sendSearchData = (course) => {
     $.ajax({
       type: "POST",
@@ -18,7 +16,7 @@ $(document).ready(function () {
         const data = res.data;
         if (Array.isArray(data)) {
           for (let i = 0; i < data.length; i++) {
-            console.log(data[i].name, data[i].cost, data[i]);
+            console.log(data[i]);
           }
         } else {
           if (data !== null) console.log(searchInput[0].value);
