@@ -14,12 +14,23 @@ $(document).ready(function () {
       },
       success: (res) => {
         const data = res.data;
-        if (Array.isArray(data)) {
+        var datalist = [];
+        var datalistElement = $("#browsers");
+        datalistElement.empty();
+        if (Array.isArray(data) && data.length > 0) {
           for (let i = 0; i < data.length; i++) {
-            console.log(data[i]);
+            datalist.push(data[i].name);
           }
+          $.each(datalist, function (index, option) {
+            $("<option>").val(option).appendTo(datalistElement);
+          });
         } else {
-          if (data !== null) console.log(searchInput[0].value);
+          if (data !== null) {
+            datalistElement.empty();
+            var newOption = $("<option>").val("No option available")[0];
+            datalistElement.append(newOption);
+            console.log(newOption, datalistElement[0]);
+          }
           //data is null
         }
       },
@@ -29,7 +40,10 @@ $(document).ready(function () {
     });
   };
   searchInput.on("keyup", function (e) {
-    if (resultBox[0].classList.contains("not-visible")) {
+    if (
+      resultBox.length > 0 &&
+      resultBox[0].classList.contains("not-visible")
+    ) {
       resultBox[0].classList.remove("not-visible");
     }
     sendSearchData(e.target.value);
