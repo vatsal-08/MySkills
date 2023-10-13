@@ -78,7 +78,10 @@ def search_results(request):
                     data.append(item)
                 res=data
             else:
-                res="No Courses Found"
+                item={
+                    'name':"No courses Found"
+                }
+                res=item
         return JsonResponse({'data':res})
     return JsonResponse({})
 

@@ -26,12 +26,16 @@ $(document).ready(function () {
           });
         } else {
           if (data !== null) {
-            datalistElement.empty();
-            var newOption = $("<option>").val("No option available")[0];
-            datalistElement.append(newOption);
-            console.log(newOption, datalistElement[0]);
+            // datalistElement.push(data);
+            // $("<option>").val(data).appendTo(datalistElement);
+            // console.log(datalistElement[1]);
+            // console.log(datalist[0], typeof datalist[0]);
+            datalist.push(data[0]);
+            $.each(datalist, function (index, option) {
+              $("<option>").val(option).appendTo(datalistElement);
+            });
+            console.log(typeof datalistElement[0], datalistElement[0]);
           }
-          //data is null
         }
       },
       error: (err) => {
