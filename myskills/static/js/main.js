@@ -30,11 +30,11 @@ $(document).ready(function () {
             // $("<option>").val(data).appendTo(datalistElement);
             // console.log(datalistElement[1]);
             // console.log(datalist[0], typeof datalist[0]);
-            datalist.push(data[0]);
-            $.each(datalist, function (index, option) {
-              $("<option>").val(option).appendTo(datalistElement);
-            });
-            console.log(typeof datalistElement[0], datalistElement[0]);
+            // datalist.push(data[0]);
+            // $.each(datalist, function (index, option) {
+            //   $("<option>").val(option).appendTo(datalistElement);
+            // });
+            // console.log(typeof datalistElement[0], datalistElement[0]);
           }
         }
       },
