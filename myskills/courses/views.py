@@ -67,8 +67,8 @@ def search_results(request):
                 Q(cost__icontains=course)
             )
             courses = Course.objects.filter(condition)
+            data=[]
             if len(courses)>0 and len(course)>0:
-                data=[]
                 for pos in courses:
                     item={
                         'pk':pos.pk,
@@ -81,7 +81,8 @@ def search_results(request):
                 item={
                     'name':"No courses Found"
                 }
-                res=item
+                data.append(item)                
+                res=data
         return JsonResponse({'data':res})
     return JsonResponse({})
 
