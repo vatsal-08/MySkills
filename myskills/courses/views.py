@@ -61,6 +61,7 @@ def search_results(request):
         course = remove_spaces(course)
         res=None
         if course:
+            print("Hit",course)
             condition=(
                 Q(name__icontains=course)|
                 Q(description__icontains=course)|
@@ -79,7 +80,9 @@ def search_results(request):
                 res=data
             else:
                 item={
-                    'name':"No courses Found"
+                    'pk':None,
+                    'name':"No courses Found",
+                    'cost':0
                 }
                 data.append(item)                
                 res=data
