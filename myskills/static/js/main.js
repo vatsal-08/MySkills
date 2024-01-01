@@ -14,18 +14,25 @@ $(document).ready(function () {
       },
       success: (res) => {
         const data = res.data;
-        var datalist = [];
         var datalistElement = $("#browsers");
+        console.log("Received data:", data[0]);
         datalistElement.empty();
         if (Array.isArray(data) && data.length > 0) {
-          for (let i = 0; i < data.length; i++) {
-            datalist.push(data[i].name);
-          }
+          const datalist = $.map(data, function (item) {
+            return item.name;
+          });
+
           $.each(datalist, function (index, option) {
             $("<option>").val(option).appendTo(datalistElement);
           });
         } else {
+          $("<option>").val("No courses available").appendTo(datalistElement);
+          console.log(datalistElement);
           if (data !== null) {
+            console.log("No courses found. Placeholder item:", data[0]);
+          } else {
+            console.log("No data received from the server.");
+            return;
           }
         }
       },
